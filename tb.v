@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module cic_tb();
-    // Memory array for input stimulus
+    
     reg data [0:4096025];
     
     reg clk, clk2, clk3, clk4, reset, enable;
@@ -9,7 +9,7 @@ module cic_tb();
     
     reg signed [1:0] bits;
     
-    // Internal full-precision CIC output (38 bits per Hogenauer criteria)
+    
     wire signed [37:0] cicout;
     wire signed [92:0] firout;
     
@@ -69,7 +69,7 @@ module cic_tb();
 
     always @(posedge clk) begin
         if (outready) begin
-            // Truncation to 20 MSBs [37:18] for gain compensation
+            
             $fwrite(fd2, "%d\n", $signed(cicout[37:18]));
         end
     end
@@ -79,7 +79,7 @@ module cic_tb();
     end
 
     always @(posedge clk3) begin
-        // Output write at decimated rate
+        
         $fwrite(fd4, "%d\n", $signed(cicout[37:18]));
     end
 
